@@ -16,10 +16,9 @@ import { TotalTokenCostDisplay } from '@components/SettingsMenu/TotalTokenCost';
 const MenuOptions = () => {
   const hideMenuOptions = useStore((state) => state.hideMenuOptions);
   const countTotalTokens = useStore((state) => state.countTotalTokens);
-  const _googleClientId = useGStore((state) => state.googleAccessToken);
+  const _googleClientId = useGStore((state) => state.googleClientId);
 
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || _googleClientId;
-  console.log('Returing MenuOptions');
   return (
     <>
       <CollapseOptions />

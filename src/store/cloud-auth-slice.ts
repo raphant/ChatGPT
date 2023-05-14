@@ -22,7 +22,7 @@ export const createCloudAuthSlice: StoreSlice<CloudAuthSlice> = (set, get) => ({
   setGoogleClientId: (googleClientId?: string) => {
     set((prev: CloudAuthSlice) => ({
       ...prev,
-      googleAccessToken: googleClientId,
+      googleClientId: googleClientId,
     }));
   },
   setGoogleAccessToken: (googleAccessToken?: string) => {
