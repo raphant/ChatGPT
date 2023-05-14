@@ -13,7 +13,7 @@ const GoogleSyncButton = ({ loginHandler }: { loginHandler?: () => void }) => {
   const setSyncStatus = useGStore((state) => state.setSyncStatus);
   const setCloudSync = useGStore((state) => state.setCloudSync);
   const cloudSync = useGStore((state) => state.cloudSync);
-
+  const syncStatus = useGStore((state) => state.syncStatus);
   const setToastStatus = useStore((state) => state.setToastStatus);
   const setToastMessage = useStore((state) => state.setToastMessage);
   const setToastShow = useStore((state) => state.setToastShow);
@@ -52,10 +52,10 @@ const GoogleSyncButton = ({ loginHandler }: { loginHandler?: () => void }) => {
 
   return (
     <div className='flex gap-4 flex-wrap justify-center'>
-      <button className='btn btn-primary' onClick={() => login()}>
+      {cloudSync && syncStatus !== 'syncing' && <button className='btn btn-primary' onClick={() => login()}>
         {t('button.sync')}
-      </button>
-      {cloudSync && (
+      </button>}
+      {cloudSync && syncStatus === 'syncing' && (
         <button className='btn btn-neutral' onClick={logout}>
           {t('button.stop')}
         </button>

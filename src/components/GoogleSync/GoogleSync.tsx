@@ -153,14 +153,14 @@ const GooglePopup = ({
     >
       <div className='p-6 border-b border-gray-200 dark:border-gray-600 text-gray-900 dark:text-gray-300 text-sm flex flex-col items-center gap-4 text-center'>
         <p>{t('tagline')}</p>
-        <GoogleSyncButton
+        {cloudSync && syncStatus === 'unauthenticated' && <GoogleSyncButton
           loginHandler={() => {
             setIsModalOpen(false);
             window.setTimeout(() => {
               setIsModalOpen(true);
             }, 3540000); // timeout - 3540000ms = 59 min (access token last 60 min)
           }}
-        />
+        />}
         {cloudSync && syncStatus === 'unauthenticated' && <p className='border border-gray-400 px-3 py-2 rounded-md'>
           {t('notice')}
         </p>}
