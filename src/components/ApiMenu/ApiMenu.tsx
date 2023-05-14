@@ -21,11 +21,10 @@ const ApiMenu = ({
 
   const apiKey = useStore((state) => state.apiKey);
   const googleClientId = useGStore((state) => state.googleClientId);
-  const apiEndpoint = useStore((state) => state.apiEndpoint);
-
   const setApiKey = useStore((state) => state.setApiKey);
+  const apiEndpoint = useStore((state) => state.apiEndpoint);
   const setApiEndpoint = useStore((state) => state.setApiEndpoint);
-  const setGoogleClientId = useGStore((state) => state.setGoogleClientId);
+  const setGoogleClientId = useGStore((state) => state.setGoogleAccessToken);
 
   const [_apiKey, _setApiKey] = useState<string>(apiKey || '');
   const [_googleClientId, _setGoogleClientKey] = useState<string>(googleClientId || '');
