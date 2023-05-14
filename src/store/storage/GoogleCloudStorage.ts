@@ -1,4 +1,4 @@
-import { PersistStorage, StorageValue } from 'zustand/middleware';
+import { PersistStorage, StorageValue, StateStorage } from 'zustand/middleware';
 import useCloudAuthStore from '@store/cloud-auth-store';
 import useStore from '@store/store';
 import {

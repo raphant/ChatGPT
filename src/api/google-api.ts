@@ -169,10 +169,7 @@ export const validateGoogleOath2AccessToken = async (accessToken: string) => {
   const response = await fetch(
     `https://oauth2.googleapis.com/tokeninfo?access_token=${accessToken}`
   );
-  if (!response.ok) {
-    console.log('Error validating Google access token');
-    return false;
-  }
+  if (!response.ok) return false;
   const result: GoogleTokenInfo = await response.json();
   return result;
 };

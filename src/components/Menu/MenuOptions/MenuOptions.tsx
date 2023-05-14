@@ -1,7 +1,5 @@
 import React from 'react';
 import useStore from '@store/store';
-import useGStore from '@store/cloud-auth-store';
-
 
 import Api from './Api';
 import Me from './Me';
@@ -12,14 +10,11 @@ import CollapseOptions from './CollapseOptions';
 import GoogleSync from '@components/GoogleSync';
 import { TotalTokenCostDisplay } from '@components/SettingsMenu/TotalTokenCost';
 
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || undefined;
 
 const MenuOptions = () => {
   const hideMenuOptions = useStore((state) => state.hideMenuOptions);
   const countTotalTokens = useStore((state) => state.countTotalTokens);
-  const _googleClientId = useGStore((state) => state.googleAccessToken);
-
-  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || _googleClientId;
-  console.log('Returing MenuOptions');
   return (
     <>
       <CollapseOptions />
