@@ -2,11 +2,13 @@ import { SyncStatus } from '@type/google-api';
 import { StoreSlice } from './cloud-auth-store';
 
 export interface CloudAuthSlice {
+  googleClientId?: string;
   googleAccessToken?: string;
   googleRefreshToken?: string;
   cloudSync: boolean;
   syncStatus: SyncStatus;
   fileId?: string;
+  setGoogleClientId: (googleClientId?: string) => void;
   setGoogleAccessToken: (googleAccessToken?: string) => void;
   setGoogleRefreshToken: (googleRefreshToken?: string) => void;
   setFileId: (fileId?: string) => void;
@@ -17,6 +19,12 @@ export interface CloudAuthSlice {
 export const createCloudAuthSlice: StoreSlice<CloudAuthSlice> = (set, get) => ({
   cloudSync: false,
   syncStatus: 'unauthenticated',
+  setGoogleClientId: (googleClientId?: string) => {
+    set((prev: CloudAuthSlice) => ({
+      ...prev,
+      googleAccessToken: googleClientId,
+    }));
+  },
   setGoogleAccessToken: (googleAccessToken?: string) => {
     set((prev: CloudAuthSlice) => ({
       ...prev,

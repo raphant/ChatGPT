@@ -40,6 +40,7 @@ const GoogleSync = ({ clientId }: { clientId: string }) => {
   const [files, setFiles] = useState<GoogleFileResource[]>([]);
 
   const initialiseState = async (_googleAccessToken: string) => {
+    console.log('initialiseState', _googleAccessToken);
     const validated = await validateGoogleOath2AccessToken(_googleAccessToken);
     if (validated) {
       try {
@@ -79,6 +80,8 @@ const GoogleSync = ({ clientId }: { clientId: string }) => {
     if (googleAccessToken) {
       setSyncStatus('syncing');
       initialiseState(googleAccessToken);
+    } else{
+      console.log('googleAccessToken is null');
     }
   }, [googleAccessToken]);
 

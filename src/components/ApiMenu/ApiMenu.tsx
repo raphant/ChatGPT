@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useStore from '@store/store';
+import useGStore from '@store/cloud-auth-store';
+
 
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 
@@ -11,26 +13,30 @@ import { availableEndpoints, defaultAPIEndpoint } from '@constants/auth';
 import DownChevronArrow from '@icon/DownChevronArrow';
 
 const ApiMenu = ({
-  setIsModalOpen,
-}: {
+                   setIsModalOpen,
+                 }: {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { t } = useTranslation(['main', 'api']);
 
   const apiKey = useStore((state) => state.apiKey);
+  const googleClientId = useGStore((state) => state.googleClientId);
   const setApiKey = useStore((state) => state.setApiKey);
   const apiEndpoint = useStore((state) => state.apiEndpoint);
   const setApiEndpoint = useStore((state) => state.setApiEndpoint);
+  const setGoogleClientId = useGStore((state) => state.setGoogleAccessToken);
 
   const [_apiKey, _setApiKey] = useState<string>(apiKey || '');
+  const [_googleClientId, _setGoogleClientKey] = useState<string>(googleClientId || '');
   const [_apiEndpoint, _setApiEndpoint] = useState<string>(apiEndpoint);
   const [_customEndpoint, _setCustomEndpoint] = useState<boolean>(
-    !availableEndpoints.includes(apiEndpoint)
+    !availableEndpoints.includes(apiEndpoint),
   );
 
   const handleSave = () => {
     setApiKey(_apiKey);
     setApiEndpoint(_apiEndpoint);
+    setGoogleClientId(_googleClientId);
     setIsModalOpen(false);
   };
 
@@ -77,7 +83,19 @@ const ApiMenu = ({
             />
           )}
         </div>
-
+        <div className='flex gap-2 items-center justify-center mt-2'>
+          <div className='min-w-fit text-gray-900 dark:text-gray-300 text-sm'>
+            {t('googleClientId.inputLabel', { ns: 'api' })}
+          </div>
+          <input
+            type='text'
+            className='text-gray-800 dark:text-white p-3 text-sm border-none bg-gray-200 dark:bg-gray-600 rounded-md m-0 w-full mr-0 h-8 focus:outline-none'
+            value={_googleClientId}
+            onChange={(e) => {
+              _setGoogleClientKey(e.target.value);
+            }}
+          />
+        </div>
         <div className='flex gap-2 items-center justify-center mt-2'>
           <div className='min-w-fit text-gray-900 dark:text-gray-300 text-sm'>
             {t('apiKey.inputLabel', { ns: 'api' })}
@@ -91,37 +109,15 @@ const ApiMenu = ({
             }}
           />
         </div>
-
-        <div className='min-w-fit text-gray-900 dark:text-gray-300 text-sm flex flex-col gap-3 leading-relaxed'>
-          <p className='mt-4'>
-            <Trans
-              i18nKey='apiKey.howTo'
-              ns='api'
-              components={[
-                <a
-                  href='https://platform.openai.com/account/api-keys'
-                  className='link'
-                  target='_blank'
-                />,
-              ]}
-            />
-          </p>
-
-          <p>{t('securityMessage', { ns: 'api' })}</p>
-
-          <p>{t('apiEndpoint.description', { ns: 'api' })}</p>
-
-          <p>{t('apiEndpoint.warn', { ns: 'api' })}</p>
-        </div>
       </div>
     </PopupModal>
   );
 };
 
 const ApiEndpointSelector = ({
-  _apiEndpoint,
-  _setApiEndpoint,
-}: {
+                               _apiEndpoint,
+                               _setApiEndpoint,
+                             }: {
   _apiEndpoint: string;
   _setApiEndpoint: React.Dispatch<React.SetStateAction<string>>;
 }) => {
