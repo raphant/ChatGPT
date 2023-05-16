@@ -121,6 +121,7 @@ const GooglePopup = ({
   const googleAccessToken = useGStore((state) => state.googleAccessToken);
   const setFileId = useGStore((state) => state.setFileId);
 
+  const setCloudSync = useGStore((state) => state.setCloudSync);
   const setToastStatus = useStore((state) => state.setToastStatus);
   const setToastMessage = useStore((state) => state.setToastMessage);
   const setToastShow = useStore((state) => state.setToastShow);
@@ -144,7 +145,7 @@ const GooglePopup = ({
       setToastStatus('error');
     }
   };
-
+  console.log('syncStatus', syncStatus, 'cloudSync', cloudSync);
   return (
     <PopupModal
       title={t('name') as string}
@@ -153,8 +154,9 @@ const GooglePopup = ({
     >
       <div className='p-6 border-b border-gray-200 dark:border-gray-600 text-gray-900 dark:text-gray-300 text-sm flex flex-col items-center gap-4 text-center'>
         <p>{t('tagline')}</p>
-        {cloudSync && syncStatus === 'unauthenticated' && <GoogleSyncButton
+        {syncStatus === 'unauthenticated' && <GoogleSyncButton
           loginHandler={() => {
+            setCloudSync(true);
             setIsModalOpen(false);
             window.setTimeout(() => {
               setIsModalOpen(true);
