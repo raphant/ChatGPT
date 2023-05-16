@@ -52,10 +52,10 @@ const GoogleSyncButton = ({ loginHandler }: { loginHandler?: () => void }) => {
 
   return (
     <div className='flex gap-4 flex-wrap justify-center'>
-      {cloudSync && syncStatus !== 'syncing' && <button className='btn btn-primary' onClick={() => login()}>
+      {syncStatus !== 'syncing' && <button className='btn btn-primary' onClick={() => login()}>
         {t('button.sync')}
       </button>}
-      {cloudSync && syncStatus === 'syncing' && (
+      {syncStatus === 'syncing' && (
         <button className='btn btn-neutral' onClick={logout}>
           {t('button.stop')}
         </button>
