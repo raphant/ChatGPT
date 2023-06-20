@@ -166,7 +166,7 @@ const GooglePopup = ({
         {cloudSync && syncStatus === 'unauthenticated' && <p className='border border-gray-400 px-3 py-2 rounded-md'>
           {t('notice')}
         </p>}
-        {cloudSync && syncStatus !== 'unauthenticated' && (
+        {cloudSync && syncStatus !==  'unauthenticated' && (
           <div className='flex flex-col gap-2 items-center'>
             {files.map((file) => (
               <FileSelector
