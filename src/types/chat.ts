@@ -50,10 +50,7 @@ export interface Folder {
 }
 
 export type ModelOptions = 'gpt-4' | 'gpt-4-32k' |
-  'gpt-3.5-turbo' | 'gpt-3.5-turbo-16k' | 'gpt-3.5-turbo-0613';
-// | 'gpt-3.5-turbo-0301';
-// | 'gpt-4-0314'
-// | 'gpt-4-32k-0314'
+  'gpt-3.5-turbo' | 'gpt-3.5-turbo-16k' | 'gpt-3.5-turbo-0613' | 'gpt-4-0613';
 
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {
@@ -61,6 +58,7 @@ export type TotalTokenUsed = {
     completionTokens: number;
   };
 };
+
 export interface LocalStorageInterfaceV0ToV1 {
   chats: ChatInterface[];
   currentChatIndex: number;
@@ -90,6 +88,7 @@ export interface LocalStorageInterfaceV2ToV3 {
   theme: Theme;
   autoTitle: boolean;
 }
+
 export interface LocalStorageInterfaceV3ToV4 {
   chats: ChatInterface[];
   currentChatIndex: number;
