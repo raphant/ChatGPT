@@ -57,7 +57,8 @@ export type ModelOptions =
   | 'gpt-3.5-turbo-0613'
   | 'gpt-4-0613'
   | 'gpt-4-1106-preview'
-  | 'gpt-3.5-turbo-1106';
+  | 'gpt-3.5-turbo-1106'
+  | 'gpt-4-turbo-preview';
 
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {
