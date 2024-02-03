@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -27,14 +34,18 @@
     height: 100%;
   }
 
-  .markdown :not(pre) {
-    font-family: Arial, Verdana, Tahoma, sans-serif;
-    font-size: 16px;
+  .markdown p {
+    font-family: 'OpenDyslexic', Arial, Verdana, Tahoma, sans-serif;
+    font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0.12em;
     word-spacing: 0.16em;
     text-align: left;
     max-width: 70ch;
+  }
+
+  .markdown .hljs {
+    font-family: 'SF Mono', monospace;
   }
 
   .markdown table {
