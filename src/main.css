@@ -27,6 +27,16 @@
     height: 100%;
   }
 
+  .markdown :not(pre) {
+    font-family: Arial, Verdana, Tahoma, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    word-spacing: 0.16em;
+    text-align: left;
+    max-width: 70ch;
+  }
+
   .markdown table {
     --tw-border-spacing-x: 0px;
     --tw-border-spacing-y: 0px;
@@ -122,7 +132,7 @@
     display: none;
   }
   pre {
-    scrollbar-width: 0;
+    scrollbar-width: none;
   }
 
   textarea:focus {
