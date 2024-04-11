@@ -29,7 +29,7 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4-turbo-preview',
 ];
 
-export const defaultModel = 'gpt-4-turbo-preview';
+export const defaultModel = 'gpt-4-turbo';
 
 export const modelMaxToken = {
   'gpt-3.5-turbo': 4096,
