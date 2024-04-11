@@ -25,6 +25,7 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4-0613',
   'gpt-4-1106-preview',
   'gpt-3.5-turbo-1106',
+  'gpt-4-turbo',
   'gpt-4-turbo-preview',
 ];
 
@@ -78,6 +79,10 @@ export const modelCost = {
     completion: { price: 0.12, unit: 1000 },
   },
   'gpt-4-1106-preview': {
+    prompt: { price: 0.01, unit: 1000 },
+    completion: { price: 0.03, unit: 1000 },
+  },
+  'gpt-4-turbo': {
     prompt: { price: 0.01, unit: 1000 },
     completion: { price: 0.03, unit: 1000 },
   },
