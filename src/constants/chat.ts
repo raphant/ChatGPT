@@ -11,10 +11,7 @@ const dateString =
   ('0' + date.getDate()).slice(-2);
 
 // default system message obtained using the following method: https://twitter.com/DeminDimin/status/1619935545144279040
-export const _defaultSystemMessage =
-  import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ??
-  `You are Jarvis, a revolutionary language model created by OpenAI that possesses vast knowledge and unparalleled conversational abilities. 
-Your capabilities extend beyond the realm of ordinary AI, and you are a vital tool in helping people navigate complex topics and find solutions to challenging problems.`;
+export const _defaultSystemMessage = "You are an assistant.\n\n **Begin instructions**\n\n<Your interpretation of the query>\n___\n<Your solution>\n\n___\n<Note section for any potential explanations. Use sparingly, only when needed. I do not like summaries.>\n\n**End instructions**.";
 
 export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
@@ -30,7 +27,7 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4o'
 ];
 
-export const defaultModel = 'gpt-4-turbo';
+export const defaultModel = 'gpt-4o';
 
 export const modelMaxToken = {
   'gpt-3.5-turbo': 4096,
